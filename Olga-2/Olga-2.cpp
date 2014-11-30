@@ -5,11 +5,10 @@
 #include "math.h"
 #define MATH_PI 3.14159265358979323846
 // ******************
-
-//NEW VERSION !1.2.5
 // MAIN
-int n = 12;
-double d1 = 1, d2 = 1, d3 = 1, d4 = 1, d5 = 1;
+int n = 16;
+double d1 = 1, d2 = 0, d3 = 1, d4 = 0, d5 = 0;
+//int NOT_VOID_ELEMENTS = 7 * n * n + 6 * n + 1;
 int FuncType = 1;
 double Eps = 1.e-4;
 double AlphaAngle = 0;
@@ -37,45 +36,50 @@ double Fxy(double x, double y)
 double FF(void)
 
 {
+
+
 	switch(FuncType)
 	{
-
-	case 1:
-		return (double)sin(AlphaAngle);
-
-		//break;
+                    
+        case 1:
+		return sin(AlphaAngle);
+		
+		
 	case 2:
-		return (double)d1 * (double)d1 * (double)(sin(AlphaAngle) / (double)3
-			+ (double)cos(AlphaAngle) * (double)sin(AlphaAngle) / (double)2
-			+ (double)cos(AlphaAngle) * (double)cos(AlphaAngle) * (double)sin(AlphaAngle) / (double)3 )
-			+ (double)d1 * (double)d2 * ((double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)2
-			+ (double)2 * (double)cos(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)3)
-			+ (double)d2 * (double)d2 * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)3;
-
-		//break;
+		return d1 * d1 * (sin(AlphaAngle) / 3.0 
+        + cos(AlphaAngle) * sin(AlphaAngle) / 2.0
+        + cos(AlphaAngle) * cos(AlphaAngle) * sin(AlphaAngle) / 3.0 ) 
+        + d1 * d2 * (sin(AlphaAngle) * sin(AlphaAngle) / 2.0 
+        + 2.0 * cos(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 3.0)
+        + d2 * d2 * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 3.0;
+                
+		
 	case 3:
-		return (double)d3 * (double)d3 * (double)sin(AlphaAngle) / (double)5
-			+ ( (double)2 * (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d4 )
-			* ( (double)2 * (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d4 )
-			* (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)9
-			+ ( (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) * (double)cos(AlphaAngle) / (double)sin(AlphaAngle)
-			+ (double)d4 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d5 )
-			* ( (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) * (double)cos(AlphaAngle) / (double)sin(AlphaAngle)
-			+ (double)d4 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d5 )
-			* (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)5
-			+ (double)d3 * (double)( (double)2 * (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle)
-			+ (double)d4 ) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)4
-			+ (double)2 * (double)d3 *( (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) * (double)cos(AlphaAngle) / (double)sin(AlphaAngle)
-			+ (double)d4 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d5 )
-			* (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)9
-			+ ( (double)2 * (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d4 )
-			* ( (double)d3 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) * (double)cos(AlphaAngle) / (double)sin(AlphaAngle)
-			+ (double)d4 * (double)cos(AlphaAngle) / (double)sin(AlphaAngle) + (double)d5 )
-			* (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) * (double)sin(AlphaAngle) / (double)4;
+		return d3 * d3 * sin(AlphaAngle) / 5.0 
+        + ( 2.0 * d3 * cos(AlphaAngle) / sin(AlphaAngle) + d4 ) 
+        * ( 2.0 * d3 * cos(AlphaAngle) / sin(AlphaAngle) + d4 )
+        * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 9.0
+        + ( d3 * cos(AlphaAngle) * cos(AlphaAngle) / ( sin(AlphaAngle) * sin(AlphaAngle ) ) 
+        + d4 * cos(AlphaAngle) / sin(AlphaAngle) + d5 )
+        * ( d3 * cos(AlphaAngle) * cos(AlphaAngle) / ( sin(AlphaAngle) * sin(AlphaAngle ) ) 
+        + d4 * cos(AlphaAngle) / sin(AlphaAngle) + d5 )
+        * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 5.0
+        + d3 * ( 2.0 * d3 * cos(AlphaAngle) / sin(AlphaAngle) 
+	+ d4 ) * sin(AlphaAngle) * sin(AlphaAngle) / 4.0
+        + 2.0 * d3 *( d3 * cos(AlphaAngle) * cos(AlphaAngle) / ( sin(AlphaAngle) * sin(AlphaAngle) ) 
+        + d4 * cos(AlphaAngle) / sin(AlphaAngle) + d5 )
+        * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 9.0
+        + ( 2.0 * d3 * cos(AlphaAngle) / sin(AlphaAngle) + d4 )
+        * ( d3 * cos(AlphaAngle) * cos(AlphaAngle) / ( sin(AlphaAngle) * sin(AlphaAngle) )
+        + d4 * cos(AlphaAngle) / sin(AlphaAngle) + d5 )
+        * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) * sin(AlphaAngle) / 4.0;   
+                
+		
 
-		//break;
 	}
-	/*
+	return 0;
+}
+/*{
 	double Ax = 0.5;
 	double Bx = 1.0 + 0.5 * cos(AlphaAngle);
 	double Cx = 0.5 + 1.0 * cos(AlphaAngle);
@@ -97,12 +101,9 @@ double FF(void)
 	result +=pow(Fxy(Dx, Dy), 2) * 1;
 	result +=pow(Fxy(Ex, Ey), 2) * 2;
 
-	result *= sin(AlphaAngle) / 6.0;
+	result *= sin(AlphaAngle) / 6;
 	return result;
-	*/
-	return 0;
-}
-
+}*/
 
 double CalcB(double x, double y, int type)
 {
@@ -117,45 +118,45 @@ double CalcB(double x, double y, int type)
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2); //D
 		result += Fxy(x + h * (1 + cos(Angle))	/ 2, y - h * sin(Angle) / 2); //E
 		result += Fxy(x + h              		/ 2, y                     ); //F
-		result *= h * h * sin(Angle) / 6.0;
+		result *= h * h * sin(Angle) / 6;
 		break;
 	case 8:
 		result += Fxy(x + h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 2; //A
 		result += Fxy(x - h*(1 + cos(Angle))	/ 2, y + h * sin(Angle) / 2) * 2; //B
 		result += Fxy(x - (h)                   / 2, y                     ) * 1; //C
 		result += Fxy(x + h              		/ 2, y                     ) * 1; //F
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 7:
 		result += Fxy(x + h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 1; //A
 		result += Fxy(x - h * (1 + cos(Angle))	/ 2, y + h * sin(Angle) / 2) * 2; //B
 		result += Fxy(x - (h)                   / 2, y                     ) * 1; //C
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 6:
 		result += Fxy(x + h * cos(Angle)		/ 2, y + h * sin(Angle) / 2); //A
 		result += 2 * Fxy(x - h * (1 + cos(Angle))	/ 2, y + h * sin(Angle) / 2); //B
 		result += 2 *Fxy(x - (h)                   / 2, y                     ); //C
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2); //D
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 5:
 		result += Fxy(x - (h)                   / 2, y                     ); //C
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2); //D
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 4:
 		result += Fxy(x - (h)                   / 2, y                     ) * 1; //C
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 2; //D
 		result += Fxy(x + h * (1 + cos(Angle))	/ 2, y - h * sin(Angle) / 2) * 2; //E
 		result += Fxy(x + h              		/ 2, y                     ) * 1; //F
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 3:
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 1; //D
 		result += Fxy(x + h * (1 + cos(Angle))	/ 2, y - h * sin(Angle) / 2) * 2; //E
 		result += Fxy(x + h              		/ 2, y                     ) * 1; //F
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 
 		break;
 	case 2:
@@ -163,12 +164,12 @@ double CalcB(double x, double y, int type)
 		result += Fxy(x - h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 1; //D
 		result += Fxy(x + h * (1 + cos(Angle))	/ 2, y - h * sin(Angle) / 2) * 2; //E
 		result += Fxy(x + h              		/ 2, y                     ) * 2; //F
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	case 1:
 		result += Fxy(x + h * cos(Angle)		/ 2, y + h * sin(Angle) / 2) * 1; //A
 		result += Fxy(x + h              		/ 2, y                     ) * 1; //F
-		result *= h * h * sin(Angle) / 12.0;
+		result *= h * h * sin(Angle) / 12;
 		break;
 	}
 	return result;
@@ -203,7 +204,6 @@ double* Summ(double *a, double *b, int Size, double c1, double c2)
 	for(i = 0; i < Size; i++)
 	{
 		result[i] = a[i] * c1 + b[i] * c2;
-
 	}
 	return result;
 }
@@ -230,19 +230,19 @@ int main()
 {
 	int i,j, k = 0;
 	int N = (n + 1) * (n + 1); //Full Matrix Size
-	int NOT_VOID_ELEMENTS = 7 * n * n + 6 * n + 1;
+	int NOT_VOID_ELEMENTS = ( 7 * n * n + 6 * n + 1);
 	double *c[MAX_WAIT_RANGE]; //Vector Array
 	double *r[MAX_WAIT_RANGE]; //vector Array
 	double *p[MAX_WAIT_RANGE]; //Vector Array
 	double *V[MAX_WAIT_RANGE]; //vector Array
-	double *Swap =	(double *)malloc(N * sizeof(double)); // Vector
+	double *Swap =			(double *)malloc(N * sizeof(double)); // Vector
 	double *w =			(double *)malloc(N * sizeof(double)); // vector
 	double *B =			(double *)malloc(N * sizeof(double)); // vector
-	double *Betha = (double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
-	double *Etha =	(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
-	double *Alpha = (double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
-	double *lambda =(double *)malloc(MAX_WAIT_RANGE * sizeof(double)); // unit
-	double *Ksi =	  (double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
+	double *Betha = 	(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
+	double *Etha =		(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
+	double *Alpha = 	(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
+	double *lambda =	(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
+	double *Ksi =	  	(double *)malloc(MAX_WAIT_RANGE * sizeof(double));  // unit
 	double Delta = 0;
 
 	int *INDEX = (int *) malloc(NOT_VOID_ELEMENTS * 2 * sizeof(int));
@@ -258,13 +258,14 @@ int main()
 	}
 	k = 0;
 	//prepearing B vector array
-	h = 1.0/(double)n;
-	printf("h = %lf \n", h);
+	h = 1/(float)n;
+
 	// Enter alpha value in degrees
 	printf("Enter alpha value in degrees \n");
 	printf("\n");
-	scanf_s("%lf", &AlphaAngle);
+	scanf("%lf", &AlphaAngle);
 	AlphaAngle *= MATH_PI / 180;
+
 	//Prepearing A Matrix as Arrays of indexes and values  of non zero elements
 	for (i = 0; i < n + 1; i++)
 	{
@@ -467,43 +468,45 @@ int main()
 	}
 	for(k = 0; k < NOT_VOID_ELEMENTS; k++)
 	{
-		printf("Value[%d][%d] = %lf \n", INDEX[k * 1] + 1, INDEX[k + NOT_VOID_ELEMENTS] + 1, VALUE[k]);
+		//printf("Value[%d][%d] = %lf \n", INDEX[k * 1] + 1, INDEX[k + NOT_VOID_ELEMENTS] + 1, VALUE[k]);
 		VALUE[k] *= h * h * sin(AlphaAngle)/24;
 	}
-	printf("Matrix succsesful calced \n");
-	system("pause");
+	//printf("Matrix succsesful calced \n");
+	//system("pause");
 	for(FuncType = 1; FuncType <= 3; FuncType++)
 	{
+
 		for(i = 0; i < n + 1; i++)
 		{
 			for(j = 0; j < n + 1; j++)
+
 			{
 				if(i == j && j == 0)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 1);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 1);
 
 				if(j > 0 && j < n + 1 - 1 && i == 0)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 2);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 2);
 
 				if(j == n + 1 - 1 && i == 0)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 3);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 3);
 
 				if(j == n + 1 - 1 && i > 0 && i < n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 4);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 4);
 
 				if(j == n + 1 - 1 &&  i == n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 5);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 5);
 
 				if(j > 0 && j < n + 1 - 1 && i == n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 6);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 6);
 
 				if(j == 0 && i == n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 7);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 7);
 
 				if(j == 0 && i > 0 && i < n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 8);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 8);
 
 				if(j > 0 && j < n + 1 - 1 && i > 0 && i < n + 1 - 1)
-					B[(n + 1) * i + j] = CalcB(h * (i * h + j * h * cos(AlphaAngle)), j * h * sin (AlphaAngle), 9);
+					B[(n + 1) * i + j] = CalcB(i * h + j * h * cos(AlphaAngle), j * h * sin (AlphaAngle), 9);
 			}
 		}
 		for(i = 0; i < N; i++)
@@ -511,7 +514,6 @@ int main()
 			//printf("B[%d] = %lf\n", i, B[i]);
 
 		}
-		//scanf("%d", &i);
 		//printf("B succsesful calced \n");
 		Eps = 1.e-4;
 		// обнулим массивы и массивы векторов
@@ -533,7 +535,7 @@ int main()
 				V[j][i] = 0;
 			}
 		}
-		for(i = 0; i < N; i++)
+		for(i = 0; i < MAX_WAIT_RANGE; i++)
 		{
 			lambda[i] = 0;
 			Betha[i] = 0;
@@ -542,7 +544,11 @@ int main()
 			Ksi[i] = 0;
 			w[i] = 0;
 		}
-		printf("All arrays succsesful became as zero\n");
+		//printf("All arrays succsesful became as zero\n");
+		//for( i = 0; i < (n + 1) * (n + 1); i++)
+		//{
+		//	//printf(" %lf ", b[i]);
+		//}
 
 		//****************************************
 		// Главный цикл
@@ -554,10 +560,10 @@ int main()
 		Swap = AlterMatrixVector(VALUE, INDEX, NOT_VOID_ELEMENTS , c[0], N );
 		r[0] = Summ (B, Swap, N, 1, -1);
 		free(Swap);
-		for( j = 0; j < N; j++)
+		/*for( j = 0; j < N; j++)
 		{
 			printf("r[0][%d] =  %lf \n", j, r[0][j]);
-		}
+		}*/
 		Ksi[1] = Betha[0] = NormaVL2(r[0], N);
 		//printf("Ro succsesful calced \n");
 		//		printf("\n\nV1:");
@@ -601,23 +607,12 @@ int main()
 			//6: Pj = (Vj - BETHAj * Pj-1) / ETHAj
 			p[j] = Summ(V[j], p[j - 1], N, 1/Etha[j], -Betha[j]/Etha[j]);
 
-
-
 			//7: Cj = Cj-1 + KSIj * Pj
 			c[j] = Summ(c[j - 1] , p[j], N, 1, Ksi[j]);
-
-
 
 			//8: w = w - ALPHAj * Vj
 			w = Summ(w, V[j], N, 1, - Alpha[j]);
 
-			/*	for (i = 0; i < N; i++)
-			{
-			printf("%d  %.2e\t %.2e\t %.2e\t %.2e \n",i , p[j][i], V[j][i], c[j][i], w[i]);
-			}
-			*/
-
-			printf("%.2e \t %.2e \t%.2e \t%.2e \n", lambda[j], Ksi[j], Betha[j], Etha[j]);
 			//9: BETHAj+1 = ||w||
 			Betha[j + 1] = NormaVL2(w, N);
 
@@ -631,7 +626,7 @@ int main()
 			//11 Ri = B - Ac[j]
 			Swap = AlterMatrixVector(VALUE, INDEX, NOT_VOID_ELEMENTS, c[j], N);
 			r[j] = Summ(B, Swap, N, 1, -1);
-			printf(" R[%d]/R[0] = %.3e \n", j, NormaVL2(r[j], N)/ NormaVL2(r[0], N) );
+			//printf(" R[%d]/R[0] = %.3e \n", j, NormaVL2(r[j], N)/ NormaVL2(r[0], N) );
 			for(i = 0; i < N; i++)
 			{
 				//printf("r[%d][%d] = %.3e \n", j, i, r[j][i]);
@@ -650,6 +645,9 @@ int main()
 				printf(" R[%d]/R[0] = %.3e \n", j, NormaVL2(r[j], N)/ NormaVL2(r[0], N) );//?
 
 				Delta = fabs( FF() - 2 * Scalar(B, c[j], N) + Scalar(AlterMatrixVector(VALUE, INDEX, NOT_VOID_ELEMENTS, c[j], N), c[j], N));
+
+				//BUG, JUST TEST!
+				//Delta = fabs(Scalar(B, c[j], N) - Scalar(AlterMatrixVector(VALUE, INDEX, NOT_VOID_ELEMENTS, c[j], N), c[j], N));
 
 				printf("DELTA =  %.3e (Eps = %.1e) \n", sqrt(Delta), Eps);
 				if(Eps < 1.e-5)
@@ -688,10 +686,9 @@ int main()
 			}
 		}
 	}
-	system("pause");
+	//system("pause");
 	return 0;
 }
-
 
 
 
